@@ -171,4 +171,25 @@ import { useRouter } from 'next/router'
 
 ```JSX
   <a className={[styles.link, styles,nav].join(" ")}></a>
+
+
 ```
+
+## ☑ 6. Styles JSX
+
+**styles jsx**
+사용 예시
+
+```JSX
+      <style jsx>{`
+        nav {
+          background-color: tomato;
+        }
+        a {
+          text-decoration: none;
+        }
+      `}</style>
+```
+
+**범위 : 선언해준 컴포넌트 내부**
+NavBar에서 `className`이 `active`인 클래스를 선언하면 Hello컴포넌트에서는 active클래스를 사용할 수 없다

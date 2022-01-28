@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import NavBar from '../components/NavBar'
+import NavBar2 from '../components/NavBar2'
 
 export default function Home() {
   return (
     <div>
-      <NavBar></NavBar>
+      <NavBar2></NavBar2>
       <h1>Hello </h1>
     </div>
   )
