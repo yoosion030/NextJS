@@ -68,7 +68,7 @@ ReactJS가 로딩되었을 때 기본적으로 이미 존재하는 것들과 연
 
 맨 처음 페이지에 들어갔을 때 HTML을 보여지게하고 그러고 나서 ReactJS가 클라이언트로 전송됐을 때 ReactJS 앱이 됨
 
-## ☑ 4.Routing
+## ☑ 4. Routing
 
 NextJS에서 a태그를 사용하려고 하면 경고 문구가 뜸
 => NextJS에 앱 내에서 페이지를 이동할 때 사용해야만 하는 특정 컴포넌트가 있기 때문
@@ -109,4 +109,66 @@ import { useRouter } from 'next/router'
       </Link>
     </>
   )
+```
+
+## ☑ 5. CSS Modules
+
+(파일명).module.css 로 파일 생성
+사용예시
+
+```css
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: tomato;
+}
+```
+
+```JSX
+import styles from './NavBar.module.css'
+
+      ~~~
+       <nav className={styles.nav}>
+```
+
+위의 코드 처럼 import해준 후 className을 `className="nav"`로 해주는게 아니라 객체 프로퍼티 형식으로 선언해줘야함
+
+Module css의 장점으로는 코드에서는 클래스네임이 `nav`이지만 브라우저에서 코드를 보면 `NavBar_nav__OBiyO`와 같이 무작위로 클래스네임을 만들기 때문에, 다른 모듈에서 똑같은 이름의 클래스를 선언해줘도 중복될 일이 없음 개꿀 ㅋ
+
+**activeClass**
+사용예시
+
+```JSX
+import { useRouter } from 'next/router'
+  import styles from './NavBar.module.css'
+
+  const router = useRouter()
+~~~  return (
+    <nav>
+      <Link href="/">
+        <a className={router.pathname === '/' ? styles.active : ''}>Home</a>
+      </Link>
+      <Link href="/about">
+        <a className={router.pathname === '/about' ? styles.active : ''}>
+          about
+        </a>
+      </Link>
+    </nav>
+  )
+
+  )
+```
+
+**클래스 여러개 주기**
+
+1. 문자열 사용
+
+```JSX
+  <a className={`${styles.link} ${styles.nav}`}></a>
+```
+
+2. 배열 사용
+
+```JSX
+  <a className={[styles.link, styles,nav].join(" ")}></a>
 ```
