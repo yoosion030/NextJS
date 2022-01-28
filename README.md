@@ -67,3 +67,46 @@ ReactJS가 로딩되었을 때 기본적으로 이미 존재하는 것들과 연
 > ReactJS를 프론트엔드 안에서 실행시키는 것
 
 맨 처음 페이지에 들어갔을 때 HTML을 보여지게하고 그러고 나서 ReactJS가 클라이언트로 전송됐을 때 ReactJS 앱이 됨
+
+## ☑ 4.Routing
+
+NextJS에서 a태그를 사용하려고 하면 경고 문구가 뜸
+=> NextJS에 앱 내에서 페이지를 이동할 때 사용해야만 하는 특정 컴포넌트가 있기 때문
+
+**Link**
+사용예시
+
+````JSX
+import Link from 'next/link'
+
+~~~ return (
+      <Link href="/about">
+        <a>about</a>
+      </Link>
+  )
+```
+````
+
+=> 페이지를 새로고침 안해도 됨 개빠름
+
+하지만 Link 태그에 **className**이나 *style*을 줄 수 없기 때문에 Link 태그 안에 a 태그를 넣어서 속성을 추가 해주면 됨
+
+**useRouter 훅을 이용해 activeStyle 주기**
+
+```JSX
+import { useRouter } from 'next/router'
+
+  const router = useRouter()
+~~~  return (
+    <>
+      <Link href="/">
+        <a style={{ color: router.pathname === '/' ? 'red' : 'blue' }}>Home</a>
+      </Link>
+      <Link href="/about">
+        <a style={{ color: router.pathname === '/about' ? 'red' : 'blue' }}>
+          about
+        </a>
+      </Link>
+    </>
+  )
+```
