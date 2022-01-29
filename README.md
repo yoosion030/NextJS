@@ -191,5 +191,58 @@ import { useRouter } from 'next/router'
       `}</style>
 ```
 
-**범위 : 선언해준 컴포넌트 내부**
+**범위 : 선언해준 컴포넌트 내부**  
 NavBar에서 `className`이 `active`인 클래스를 선언하면 Hello컴포넌트에서는 active클래스를 사용할 수 없다
+
+## ☑ 7. Custom App
+
+**global style**
+
+```JSX
+<style jsx global></style>
+```
+
+범위 : 선언해준 컴포넌트 내부
+
+**모든 페이지에 스타일이나 컴포넌트 주기**
+
+1. Pages폴더에 \_app.js 파일 생성
+2. Props 부분에 `Component`랑 `pageProps` 넘겨주기
+
+```JSX
+export default function App({ Component, pageProps }) {
+  return (
+      <Component {...pageProps}></Component>
+  )
+}
+
+```
+
+3. about, home 컴포넌트에서 `NavBar` 라는 컴포넌트가 중복되어있기 때문에 \_app.js 에서 NavBar를 불러와준다.
+
+```JSX
+import NavBar2 from '../components/NavBar2'
+
+export default function App({ Component, pageProps }) {
+  return (
+    <div>
+      <NavBar2></NavBar2>
+      <Component {...pageProps}></Component>
+    </div>
+  )
+}
+
+```
+
+4. 그러면 home, about 컴포넌트 둘다 NavBar 가 보이게 된다 !!
+5. 모든 컴포넌트에 동일한 스타일을 주고싶다면 \_app.js에 jsx global 을 주면 됨
+
+```JSX
+      <style jsx global>
+        {`
+          body {
+            background: #b8b8fd;
+          }
+        `}
+      </style>
+```
