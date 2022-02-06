@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Head from 'next/head'
 import Seo from '../components/Seo'
 
 export default function Home() {

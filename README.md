@@ -247,3 +247,48 @@ export default function App({ Component, pageProps }) {
       </style>
 ```
 
+## Head
+
+NextJS 에서는 ReactJS와 다르게 index.html이 없어서 `title`을 직접 바꿀 수가 없다. 하지만 NextJS에서는 **HEAD** 라는 것을 제공하여 index.html에 접근할 수 있다.
+
+```JSX
+import Head from 'next/head';
+
+~~~
+<Head>
+  <title>Next 짱 !</title>
+</Head>
+
+```
+
+**더 편리하게 사용하기**
+
+1. components 폴더에 Seo.js 파일을 만들어준다.
+
+2. Seo.js
+
+```jsx
+import Head from 'next/head'
+
+export default function Seo({ title }) {
+  return (
+    <Head>
+      <title>{title} | Next Movies</title>
+    </Head>
+  )
+}
+```
+
+3. about.js
+
+```JSX
+import Seo from '../components/Seo'
+export default function About() {
+return (
+  <>
+    <Seo title="About"></Seo>
+  </>
+)
+}
+
+```
