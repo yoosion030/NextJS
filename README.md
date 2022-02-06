@@ -247,7 +247,7 @@ export default function App({ Component, pageProps }) {
       </style>
 ```
 
-## Head
+## ☑ 8. Head
 
 NextJS 에서는 ReactJS와 다르게 index.html이 없어서 `title`을 직접 바꿀 수가 없다. 하지만 NextJS에서는 **HEAD** 라는 것을 제공하여 index.html에 접근할 수 있다.
 
