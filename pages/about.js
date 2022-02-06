@@ -1,9 +1,13 @@
-
+import Head from 'next/head'
+import Seo from '../components/Seo'
 // /about으로 라우팅 됨
 export default function About() {
   return (
-    <div>
-      <h1>About!!</h1>
-    </div>
+    <>
+      <Seo title="About"></Seo>
+      <div>
+        <h1>About!!</h1>
+      </div>
+    </>
   )
 }
