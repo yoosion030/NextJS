@@ -309,7 +309,7 @@ return (
   
 **단점**
 1. CSR에 비해 서버에 부하가 많다.
-2. 사용자가 페이지를 전환 시 화면이 깜빡ㄲ마빡 거린다는 느낌을 받을 수 있다.
+2. 사용자가 페이지를 전환 시 화면이 깜빡깜빡 거린다는 느낌을 받을 수 있다.
 
 ### getServerSideProps
 
@@ -340,3 +340,20 @@ props로 넘기기
 ```JSX
 export default function Home({results})
 ```
+
+
+## ☑ 10. Dynamic Routes
+
+ex ) movies/all -> 라우팅 하는 방법
+1. pages 폴더에 movies 폴더를 만들어 준다.
+2. movies 폴더 안에 all.js 파일을 만들어주면 끝 
+
+만약 movies 만 라우팅 하고 싶다면?
+1. movies 폴더 안에 index.js  파일을 만들어주면 끝
+
+
+**URL 변수 달아주기**
+ex ) movies/영화id
+
+파일명 -> [변수명].js
+
