@@ -268,14 +268,14 @@ import Head from 'next/head';
 2. Seo.js
 
 ```jsx
-import Head from 'next/head'
+import Head from "next/head";
 
 export default function Seo({ title }) {
   return (
     <Head>
       <title>{title} | Next Movies</title>
     </Head>
-  )
+  );
 }
 ```
 
@@ -296,32 +296,30 @@ return (
 ## ☑ 9. Server Side Rendering ( SSR )
 
 **SSR의 동작 순서**
+
 1. 서버는 렌더링 할 준비가 된 HTML 응답을 브라우저에게 보낸다.
 2. 브라우저는 페이지를 렌더링한다. 이 때 페이지를 볼 수 있게된다.
 3. 브라우저가 JS를 다운로드 받는다.
 4. 브라우저가 React를 실행한다.
 5. 페이지를 상호작용할 수 있다.
 
-
 **장점**
+
 1. CSR에 비해 렌더링 속도가 빨라 사용자가 기다리는 로딩시간이 짧다.
 2. 검색엔진 최적화가 쉽다.
-  
+
 **단점**
+
 1. CSR에 비해 서버에 부하가 많다.
 2. 사용자가 페이지를 전환 시 화면이 깜빡깜빡 거린다는 느낌을 받을 수 있다.
 
 ### getServerSideProps
 
+만약 하나의 페이지에서 **Server-side Rendering**하게 되면, HTML 페이지는 모든 요청(request)에서 생성됩니다.
 
-  만약 하나의 페이지에서 **Server-side Rendering**하게 되면, HTML 페이지는 모든 요청(request)에서 생성됩니다.
- 
+하나의 페이지를 Server-side Rendering 하기 위해서, **getServerSideProps** 함수를 비동기 처리하여 사용합니다. 이 함수는 모든 요청(request)에서 Server에 의해 실행됩니다. (빌드할 때 실행 X)
 
-  하나의 페이지를 Server-side Rendering 하기 위해서, **getServerSideProps** 함수를 비동기 처리하여 사용합니다. 이 함수는 모든 요청(request)에서 Server에 의해 실행됩니다. (빌드할 때 실행 X)
-
-
-  예를 들어, 외부 API로 부터 자주 업데이트되는 데이터를 **pre-rendering**하기 위한 페이지가 필요하다면, 데이터를 가져오기 위한 **getServerSideProps** 함수를 작성할 수 있으며 아래 코드와 같이 페이지에 데이터를 전달할 수 있습니다.
-
+예를 들어, 외부 API로 부터 자주 업데이트되는 데이터를 **pre-rendering**하기 위한 페이지가 필요하다면, 데이터를 가져오기 위한 **getServerSideProps** 함수를 작성할 수 있으며 아래 코드와 같이 페이지에 데이터를 전달할 수 있습니다.
 
 ```JSX
 
@@ -337,23 +335,42 @@ export async function getServerSideProps() {
 ```
 
 props로 넘기기
+
 ```JSX
 export default function Home({results})
 ```
 
-
 ## ☑ 10. Dynamic Routes
 
 ex ) movies/all -> 라우팅 하는 방법
+
 1. pages 폴더에 movies 폴더를 만들어 준다.
-2. movies 폴더 안에 all.js 파일을 만들어주면 끝 
+2. movies 폴더 안에 all.js 파일을 만들어주면 끝
 
 만약 movies 만 라우팅 하고 싶다면?
-1. movies 폴더 안에 index.js  파일을 만들어주면 끝
 
+1. movies 폴더 안에 index.js 파일을 만들어주면 끝
 
 **URL 변수 달아주기**
 ex ) movies/영화id
 
 파일명 -> [변수명].js
 
+**페이지 이동시키기**
+
+1. 함수를 만들어 onClick 함수에서 실행시키기
+
+```JSX
+  const router = useRouter();
+  const onClick = (id, title) => {
+    router.push(
+      {
+        pathname: `movies/${id}`,
+        query: {
+          title,
+        },
+      },
+      `movies/${id}`,
+    );
+  };
+```
